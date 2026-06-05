@@ -1,0 +1,40 @@
+name: Unit tests  # Name of the GitHub Actions workflow
+
+on:
+  push:
+    branches:
+      - "*"        # Run on pushes to any branch
+    branches-ignore:
+      - "main"     # Do NOT run on main
+      - "master"   # Do NOT run on master
+
+  pull_request:
+    branches:
+      - "main"     # Run for PRs targeting main
+      - "master"   # Run for PRs targeting master
+
+jobs:
+  unit-tests:
+    name: Run Unit Tests  # Display name of the job
+    runs-on: ubuntu-latest  # Use latest Ubuntu runner
+
+    steps:
+      - name: Checkout Code  # Get repository code onto the runner
+        uses: actions/checkout@v4
+
+      - name: Setup Java  # Install and configure Java environment
+        uses: actions/setup-java@v4
+        with:
+          java-version: "17"   # Use Java 17
+          distribution: "temurin"  # Eclipse Temurin JDK
+          cache: maven  # Cache Maven dependencies for faster builds
+
+      - name: Run unit tests  # Execute Maven test phase (compiles + runs tests)
+        run: mvn test --batch-mode --no-transfer-progress
+
+      - name: Upload test reports  # Save test results as build artifact
+        if: always()  # Run this step even if tests fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: unit-test-reports  # Name of uploaded artifact
+          path: target/surefire-reports/  # Where Maven stores test reports

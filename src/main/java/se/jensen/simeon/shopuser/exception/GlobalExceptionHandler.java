@@ -24,8 +24,8 @@ public class GlobalExceptionHandler {
     }
 
     // 2. FÅNGA FEL INLOGGNING
-    @ExceptionHandler(BadCredentialsException.class)
-    public ResponseEntity<String> handleBadCredentials(BadCredentialsException ex) {
+    @ExceptionHandler({BadCredentialsException.class, org.springframework.security.core.userdetails.UsernameNotFoundException.class})
+    public ResponseEntity<String> handleBadCredentials(Exception ex) { // Ändra typen till Exception här
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body("Fel användarnamn/e-post eller lösenord. Försök igen.");
     }

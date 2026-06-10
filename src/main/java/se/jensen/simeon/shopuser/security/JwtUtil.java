@@ -50,10 +50,10 @@ public class JwtUtil {
     ) throws Exception {
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 
-        byte[] privateBytes = Base64.getDecoder().decode(privateKeyStr);
+        byte[] privateBytes = Base64.getDecoder().decode(privateKeyStr.replaceAll("\\s", ""));
         this.privateKey = keyFactory.generatePrivate(new PKCS8EncodedKeySpec(privateBytes));
 
-        byte[] publicBytes = Base64.getDecoder().decode(publicKeyStr);
+        byte[] publicBytes = Base64.getDecoder().decode(publicKeyStr.replaceAll("\\s", ""));
         this.publicKey = keyFactory.generatePublic(new X509EncodedKeySpec(publicBytes));
     }
 

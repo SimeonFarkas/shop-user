@@ -1,4 +1,4 @@
-package se.jensen.simeon.shopuser.security;
+package se.jensen.simeon.shopuser.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import se.jensen.simeon.shopuser.security.JwtFilter;
 
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/products").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session

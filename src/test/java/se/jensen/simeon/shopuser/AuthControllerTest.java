@@ -78,7 +78,7 @@ public class AuthControllerTest {
     @Test
     public void testRegister_Success() throws Exception {
         // 1. Arrange (Testspecifik setup)
-        UserReqDto reqDto = new UserReqDto("Handsome_Henry", "henry@veryhandsome.com", "password");
+        UserReqDto reqDto = new UserReqDto("Handsome_Henry", "henry@veryhandsome.com", "Password123");
         UserRespDto expectedResp = new UserRespDto(1L, "Handsome_Henry", "henry@veryhandsome.com", "USER");
 
         // När kontrollern anropar servicen, returnera vår förväntade DTO
@@ -229,7 +229,7 @@ public class AuthControllerTest {
     @Test
     public void testRegister_ReturnsBadRequest_WhenUsernameAlreadyExists() throws Exception {
         // 1. Arrange
-        UserReqDto reqDto = new UserReqDto("Handsome_Henry", "henry@veryhandsome.com", "password");
+        UserReqDto reqDto = new UserReqDto("Handsome_Henry", "henry@veryhandsome.com", "Password123");
 
         // Säg till servicen att kasta ett IllegalArgumentException (precis som den gör i verkligheten)
         when(userService.registerUser(any(UserReqDto.class)))

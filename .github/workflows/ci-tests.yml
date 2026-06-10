@@ -2,8 +2,6 @@ name: Unit tests  # Name of the GitHub Actions workflow
 
 on:
   push:
-    branches:
-      - "*"        # Run on pushes to any branch
     branches-ignore:
       - "main"     # Do NOT run on main
       - "master"   # Do NOT run on master

@@ -35,11 +35,11 @@ public class AuthController {
     private final JwtUtil jwtUtil;
     private final UserMapper userMapper;
 
-    public AuthController(UserService userService, AuthenticationManager authenticationManager, JwtUtil jwtUtil) {
+    public AuthController(UserService userService, AuthenticationManager authenticationManager, JwtUtil jwtUtil, UserMapper userMapper) {
         this.userService = userService;
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
-        this.userMapper = new UserMapper();
+        this.userMapper = userMapper;
     }
 
     /**

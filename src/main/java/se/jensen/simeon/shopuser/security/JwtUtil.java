@@ -82,4 +82,13 @@ public class JwtUtil {
             return false;
         }
     }
+
+    public String generateServiceToken() {
+        return Jwts.builder()
+                .setSubject("shop-user-service")
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
+                .signWith(privateKey)
+                .compact();
+    }
 }

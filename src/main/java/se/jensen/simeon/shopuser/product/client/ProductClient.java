@@ -1,5 +1,6 @@
 package se.jensen.simeon.shopuser.product.client;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import se.jensen.simeon.shopuser.product.model.Product;
@@ -13,9 +14,11 @@ public class ProductClient {
     private final RestClient restClient;
     private final JwtUtil jwtUtil;
 
-    public ProductClient(RestClient.Builder builder, JwtUtil jwtUtil) {
+    public ProductClient(RestClient.Builder builder,
+                         JwtUtil jwtUtil,
+                         @Value("${product-service.url}") String productServiceUrl) {
         this.restClient = builder
-                .baseUrl("http://localhost:8081")
+                .baseUrl(productServiceUrl)
                 .build();
         this.jwtUtil = jwtUtil;
     }

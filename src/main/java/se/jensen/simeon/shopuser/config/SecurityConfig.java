@@ -69,7 +69,8 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of(
                 "http://localhost:4200",  // Angular dev-server
-                "https://main.d14amrmfdp3d51.amplifyapp.com/"
+                "https://main.d14amrmfdp3d51.amplifyapp.com/",
+                "http://cloudstore-frontend-simeon.s3-website.eu-north-1.amazonaws.com"
         ));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
